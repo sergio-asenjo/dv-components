@@ -8,9 +8,40 @@ aside {
   left: 0;
   width: 300px;
   height: 100%;
-  background-color: #fff;
+  background-color: #ccc;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-  z-index: 100;
   transform: translateX(-100%);
+  z-index: 100;
   transition: transform 0.3s ease-in-out;
+}
+
+:host([open]) aside {
+  transform: translateX(0);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  padding: 0 20px;
+  background-color: #333;
+  color: white;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+
+  h1 {
+    margin: 0;
+    font-size: 18px;
+    color: white;
+  }
+
+  .close {
+    cursor: pointer;
+  }
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 60px);
 }
