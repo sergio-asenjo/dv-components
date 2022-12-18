@@ -8,6 +8,14 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface DvDrawer {
         "drawerHeader": string;
+        "open": boolean;
+        "toggleDrawer": () => Promise<void>;
+    }
+    interface DvStockPrice {
+    }
+    interface DvTooltip {
+        "message": string;
+        "shown": boolean;
     }
     interface MyComponent {
         /**
@@ -31,6 +39,18 @@ declare global {
         prototype: HTMLDvDrawerElement;
         new (): HTMLDvDrawerElement;
     };
+    interface HTMLDvStockPriceElement extends Components.DvStockPrice, HTMLStencilElement {
+    }
+    var HTMLDvStockPriceElement: {
+        prototype: HTMLDvStockPriceElement;
+        new (): HTMLDvStockPriceElement;
+    };
+    interface HTMLDvTooltipElement extends Components.DvTooltip, HTMLStencilElement {
+    }
+    var HTMLDvTooltipElement: {
+        prototype: HTMLDvTooltipElement;
+        new (): HTMLDvTooltipElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -39,12 +59,21 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "dv-drawer": HTMLDvDrawerElement;
+        "dv-stock-price": HTMLDvStockPriceElement;
+        "dv-tooltip": HTMLDvTooltipElement;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
     interface DvDrawer {
         "drawerHeader"?: string;
+        "open"?: boolean;
+    }
+    interface DvStockPrice {
+    }
+    interface DvTooltip {
+        "message"?: string;
+        "shown"?: boolean;
     }
     interface MyComponent {
         /**
@@ -62,6 +91,8 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "dv-drawer": DvDrawer;
+        "dv-stock-price": DvStockPrice;
+        "dv-tooltip": DvTooltip;
         "my-component": MyComponent;
     }
 }
@@ -70,6 +101,8 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "dv-drawer": LocalJSX.DvDrawer & JSXBase.HTMLAttributes<HTMLDvDrawerElement>;
+            "dv-stock-price": LocalJSX.DvStockPrice & JSXBase.HTMLAttributes<HTMLDvStockPriceElement>;
+            "dv-tooltip": LocalJSX.DvTooltip & JSXBase.HTMLAttributes<HTMLDvTooltipElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }

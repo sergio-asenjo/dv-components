@@ -15,34 +15,45 @@
         font-family: sans-serif;
       }
 
-      .side-nav {
-        height: 100%;
+      div {
+        display: flex;
+        flex-direction: column;
         width: 100%;
-        background-color: #f1f1f1;
+        gap: 20px
       }
+
     </style>
   </head>
   <body>
-    <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
-    <dv-drawer drawer-header="Side menu">
-      <nav class="side-nav">
-        <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Contact</li>
-        </ul>
-      </nav>
-    </dv-drawer>
-    <button>
-      open drawer
-    </button>
+    <div>
+      <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
+  
+      <dv-drawer drawer-header="Side menu">
+        <nav class="side-nav">
+          <ul>
+            <li>Home</li>
+            <li>About</li>
+            <li>Contact</li>
+          </ul>
+        </nav>
+      </dv-drawer>
+      <button>
+        open drawer
+      </button>
+  
+      <dv-tooltip message="message">
+        Tooltip test
+      </dv-tooltip>
+  
+      <dv-stock-price></dv-stock-price>
+    </div>
   </body>
 
   <script>
     const button = document.getElementsByTagName('button');
     const drawer = document.getElementsByTagName('dv-drawer');
     button[0].addEventListener('click', () => {
-      drawer[0].toggleAttribute('open');
+      drawer[0].toggleDrawer();
     })
   </script>
 </html>

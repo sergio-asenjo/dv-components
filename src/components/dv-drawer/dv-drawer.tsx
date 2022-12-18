@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop } from '@stencil/core';
+import { Component, Host, h, Prop, State, Method } from '@stencil/core';
 
 @Component({
   tag: 'dv-drawer',
@@ -6,25 +6,50 @@ import { Component, Host, h, Prop } from '@stencil/core';
   shadow: true,
 })
 export class DvDrawer {
+  @State() showContactInfo: boolean = false;
   @Prop({ reflect: true }) drawerHeader: string = 'Header Drawer';
+  @Prop({ reflect: true, mutable: true }) open: boolean = false;
+
+  private onContentChange(content: string) {
+    this.showContactInfo = content === 'content';
+  }
+
+  @Method()
+  public async toggleDrawer(): Promise<void> {
+    this.open = !this.open;
+  }
 
   render() {
+    let mainContent = <slot />;
+    if (this.showContactInfo) {
+      mainContent = (
+        <div class="contact-information">
+          <h2>Contact Information</h2>
+          <p>You can reach us via phone or email</p>
+          <ul>
+            <li>Phone: 123-456-7890</li>
+            <li>
+              E-Mail: <a href="mailto:something@something.com">something@something</a>
+            </li>
+          </ul>
+        </div>
+      )
+    }
+
     return (
       <Host>
+        <div class="backdrop" onClick={this.toggleDrawer.bind(this)}></div>
         <aside>
           <header>
             <h1>{this.drawerHeader}</h1>
-            {/* // add an svg of an x to close the drawer  */}
-            <svg class="close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-              <path fill="none" d="M0 0h24v24H0z" />
-              <path
-                fill="rgba(255, 255, 255, 0.54)"
-                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-              />
-            </svg>
+            <button class="close" onClick={this.toggleDrawer.bind(this)}>X</button>
           </header>
+          <section class="tabs">
+            <button class={!this.showContactInfo ? 'active' : ''} onClick={this.onContentChange.bind(this, 'nav')}>Navigation</button>
+            <button class={this.showContactInfo ? 'active' : ''} onClick={this.onContentChange.bind(this, 'content')}>Contact</button>
+          </section>
           <main>
-            <slot />
+            {mainContent}
           </main>
         </aside>
       </Host>
