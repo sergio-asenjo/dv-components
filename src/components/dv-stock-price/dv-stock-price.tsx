@@ -2,7 +2,7 @@ import { Component, Host, h, State, Element } from '@stencil/core';
 
 @Component({
   tag: 'dv-stock-price',
-  styleUrl: 'dv-stock-price.scss',
+  styleUrls: ['dv-stock-price.scss', '../../global/global.scss'],
   shadow: true,
 })
 export class DvStockPrice {
@@ -10,7 +10,7 @@ export class DvStockPrice {
   @State() stockPrice: string = '0';
   @State() stockUserInput: string = '';
   private stockInput: HTMLInputElement;
-  private API_KEY: string = 'W4KN67028HKNK0HD';
+  private API_KEY: string = 'DEMO';
   private API_URL: string = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&apikey=${this.API_KEY}&symbol=`;
 
   private async onFetchStockPrice(event: Event) {

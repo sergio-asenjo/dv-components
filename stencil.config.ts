@@ -3,6 +3,7 @@ import { sass } from '@stencil/sass';
 
 export const config: Config = {
   namespace: 'dv-components',
+  globalStyle: 'src/global/global.scss',
   plugins: [
     sass(),
   ],
