@@ -5,7 +5,9 @@ export const config: Config = {
   namespace: 'dv-components',
   globalStyle: 'src/global/global.scss',
   plugins: [
-    sass(),
+    sass({
+      injectGlobalPaths: ["src/global/global.scss"]
+    }),
   ],
   outputTargets: [
     {
