@@ -11,7 +11,12 @@ export namespace Components {
         "open": boolean;
         "toggleDrawer": () => Promise<void>;
     }
+    interface DvSpinner {
+    }
+    interface DvStockFinder {
+    }
     interface DvStockPrice {
+        "error": boolean;
     }
     interface DvTooltip {
         "message": string;
@@ -32,12 +37,28 @@ export namespace Components {
         "middle": string;
     }
 }
+export interface DvStockFinderCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLDvStockFinderElement;
+}
 declare global {
     interface HTMLDvDrawerElement extends Components.DvDrawer, HTMLStencilElement {
     }
     var HTMLDvDrawerElement: {
         prototype: HTMLDvDrawerElement;
         new (): HTMLDvDrawerElement;
+    };
+    interface HTMLDvSpinnerElement extends Components.DvSpinner, HTMLStencilElement {
+    }
+    var HTMLDvSpinnerElement: {
+        prototype: HTMLDvSpinnerElement;
+        new (): HTMLDvSpinnerElement;
+    };
+    interface HTMLDvStockFinderElement extends Components.DvStockFinder, HTMLStencilElement {
+    }
+    var HTMLDvStockFinderElement: {
+        prototype: HTMLDvStockFinderElement;
+        new (): HTMLDvStockFinderElement;
     };
     interface HTMLDvStockPriceElement extends Components.DvStockPrice, HTMLStencilElement {
     }
@@ -59,6 +80,8 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "dv-drawer": HTMLDvDrawerElement;
+        "dv-spinner": HTMLDvSpinnerElement;
+        "dv-stock-finder": HTMLDvStockFinderElement;
         "dv-stock-price": HTMLDvStockPriceElement;
         "dv-tooltip": HTMLDvTooltipElement;
         "my-component": HTMLMyComponentElement;
@@ -69,7 +92,13 @@ declare namespace LocalJSX {
         "drawerHeader"?: string;
         "open"?: boolean;
     }
+    interface DvSpinner {
+    }
+    interface DvStockFinder {
+        "onDvSymbolSelected"?: (event: DvStockFinderCustomEvent<string>) => void;
+    }
     interface DvStockPrice {
+        "error"?: boolean;
     }
     interface DvTooltip {
         "message"?: string;
@@ -91,6 +120,8 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "dv-drawer": DvDrawer;
+        "dv-spinner": DvSpinner;
+        "dv-stock-finder": DvStockFinder;
         "dv-stock-price": DvStockPrice;
         "dv-tooltip": DvTooltip;
         "my-component": MyComponent;
@@ -101,6 +132,8 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "dv-drawer": LocalJSX.DvDrawer & JSXBase.HTMLAttributes<HTMLDvDrawerElement>;
+            "dv-spinner": LocalJSX.DvSpinner & JSXBase.HTMLAttributes<HTMLDvSpinnerElement>;
+            "dv-stock-finder": LocalJSX.DvStockFinder & JSXBase.HTMLAttributes<HTMLDvStockFinderElement>;
             "dv-stock-price": LocalJSX.DvStockPrice & JSXBase.HTMLAttributes<HTMLDvStockPriceElement>;
             "dv-tooltip": LocalJSX.DvTooltip & JSXBase.HTMLAttributes<HTMLDvTooltipElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;

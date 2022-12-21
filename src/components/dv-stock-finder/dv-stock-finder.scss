@@ -2,18 +2,6 @@
   display: block;
 }
 
-.stock__card {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
-  font-family: inherit;
-  width: 100%;
-}
-
 .form {
   display: flex;
   flex-direction: column;
@@ -51,8 +39,7 @@
   }
 }
 
-:host(.error) {
-  .stock__card {
-    border-color: red;
-  }
+li:hover, li:active {
+  background-color: #eee;
+  cursor: pointer;
 }

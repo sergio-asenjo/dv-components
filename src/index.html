@@ -46,6 +46,8 @@
       </dv-tooltip>
   
       <dv-stock-price></dv-stock-price>
+
+      <dv-stock-finder></dv-stock-finder>
     </div>
   </body>
 
@@ -55,5 +57,10 @@
     button[0].addEventListener('click', () => {
       drawer[0].toggleDrawer();
     })
+
+    const stockFinderEl = document.querySelector('dv-stock-finder');
+    stockFinderEl.addEventListener('dvSymbolSelected', (event) => {
+      console.log(event.detail);
+    });
   </script>
 </html>
